@@ -131,7 +131,7 @@ pub trait SinkExt<Item>: Sink<Item> {
 
     /// Transforms the error returned by the sink.
     fn sink_map_err<E, F>(self, f: F) -> SinkMapErr<Self, F>
-        where F: FnOnce(Self::Error) -> E,
+        where F: FnMut(Self::Error) -> E,
               Self: Sized,
     {
         SinkMapErr::new(self, f)
